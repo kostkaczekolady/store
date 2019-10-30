@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import { useState, useEffect } from 'react';
+import Dashboard from './Dashboard';
 
 function App() {
-  return (
+    // const size = useWindowSize();
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Dashboard/>
     </div>
   );
 }
+// function useWindowSize() {
+//     const isClient = typeof window === 'object';
+//     function getSize() {
+//         return {
+//             width: isClient ? window.innerWidth : undefined
+//         };
+//     }
+//
+//     const [windowSize, setWindowSize] = useState(getSize);
+//
+//     useEffect(() => {
+//         if (!isClient) {
+//             return false;
+//         }
+//
+//         function handleResize() {
+//             setWindowSize(getSize());
+//         }
+//
+//         window.addEventListener('resize', handleResize);
+//         return () => window.removeEventListener('resize', handleResize);
+//     }, []);
+//
+//     return windowSize;
+// }
 
 export default App;
