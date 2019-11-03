@@ -1,12 +1,8 @@
 import { ADD_DATA } from "./action-types";
 
-// export function addArticle(payload) {
-//     return { type: "ADD_ARTICLE", payload }
-// };
-
-export const addData = () => {
-    return {
+export const addData = (value, target) => (dispatch) => {
+    dispatch ({
         type: ADD_DATA,
-        // payload: ?
-    }
+        payload: { value, target },
+    });
 };

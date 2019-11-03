@@ -15,15 +15,18 @@ const initialState = {
 
 };
 
-export default (state = initialState, action) => {
+const mainReducer = (state = initialState, action) => {
+// export default (state = initialState, action) => {
+    const newState = JSON.parse(JSON.stringify(state));
+
     switch(action.type){
-        case ADD_DATA:
-            return {
-                ...state
-                // payload ?
-            }
-            default:
-                return state;
+        case 'ADD_DATA':
+            newState[action.payload.target] = action.payload.value;
+            return newState;
+        default:
+            return state;
     }
 }
+
+export default mainReducer;
 
