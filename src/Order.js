@@ -8,7 +8,7 @@ const Order = () => {
             <p className="container-title">YOUR ORDER</p>
             <div className="container-order-box">
                 <div className="container-order-box-img">
-                    <img src={item}/>
+                    <img src={item} alt=""/>
                 </div>
                 <div className="container-order-box-info">
                     <p>Acme product name</p>

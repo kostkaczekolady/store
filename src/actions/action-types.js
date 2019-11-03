@@ -1,1 +1,1 @@
-export const ADD_DATA = 'ADD_DATA';
+export const MODIFY_FORM = 'MODIFY_FORM';

@@ -1,199 +1,190 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
-import { addData } from "./actions";
+import { modifyForm } from "./actions";
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         addData: article => dispatch(addData(article))
-//     }
-// }
 
 class Form extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            name: '',
-            surname: '',
-            // email: '',
-            // phone: '',
-            // address: '',
-            // zipCode: '',
-            // city: '',
-            // state: '',
-            // country: '',
-            // cardNumber: '',
-            // cardHolder: '',
-            // cardCvc: '',
 
-        };
         this.handleChange = this.handleChange.bind(this);
         this.handleValidate = this.handleValidate.bind(this);
-    }
-    handleChange(event) {
-
-        this.setState({ [event.target.name]: event.target.value }, ()=>{
-            console.log(this.state);
-        });
+        this.handleBuy = this.handleBuy.bind(this);
     }
 
-    handleValidate(event) {
-    // aktywne dopiero po uzupełnieniu wymaganych pól
-    //     {console.log("walidacja")}
-    //     // switch(event.target.name) {
-    //     //     case 'email':
-    //     //         match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-    //     //
-    //     // }
-    //     // if ( (input === 'name' && value.length >= 0 ) || (input === "surname" >=0 )){
-    //     //
-    //     // }
+    handleChange(e, target) {
+        this.props.modifyForm(e.target.value, target);
+        this.handleValidate(e);
+    }
+
+    handleValidate(e) {
+        if (e.target.name === 'name' || "surname" ){
+            console.log(e.target.value.length)
+        } else if (e.target.value === "email"){
+
+        }
+    }
+
+    handleBuy(){
+        console.log("Succes!")
     }
 
     render() {
-        // const {
-        //     name,
-        //     surname,
-        //     // email,
-        //     // phone,
-        //     // address,
-        //     // zipCode,
-        //     // city,
-        //     // state,
-        //     // country,
-        //     // cardNumber,
-        //     // cardHolder,
-        //     // cardCvc,
-        //
-        // } = this.props;
+        const {
+            name,
+            surname,
+            email,
+            phone,
+            address,
+            addresCont,
+            zipCode,
+            city,
+            state,
+            country,
+            cardNumber,
+            cardHolder,
+            cardCvc,
+        } = this.props.mainReducer;
         return (
             <Fragment>
                 <div className="container-form">
                     <p className="container-title">DELIVERY ADDRESS</p>
-                    <div>
+                    <div className="required">
                         <p>first name</p>
                         <input
                             name="name"
                             type="string"
-                            // value={this.props.mainReducer.name}
-                            onChange={this.handleChange}
+                            value={name}
+                            onChange={(e) => this.handleChange(e, 'name')}
+                            required
                         />
                     </div>
-                    <div>
+                    <div className="required">
                         <p>last name</p>
                         <input
                             name="surname"
                             type="string"
-                            // value={this.props.mainReducer.surname}
-                            onChange={this.handleChange}
+                            value={surname}
+                            onChange={(e) => this.handleChange(e, 'surname')}
+                            required
                         />
                     </div>
-                    {/*<div>*/}
-                        {/*<p>e-mail</p>*/}
-                        {/*<input*/}
-                            {/*name="email"*/}
-                            {/*type="string"*/}
-                            {/*value={email}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-
-                    {/*<div>*/}
-                        {/*<p>phone</p>*/}
-                        {/*<input*/}
-                            {/*name="phone"*/}
-                            {/*type="string"*/}
-                            {/*value={phone}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*<p>address</p>*/}
-                        {/*<input*/}
-                            {/*name="address"*/}
-                            {/*type="string"*/}
-                            {/*value={address}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*<p>address country</p>*/}
-                        {/*<input*/}
-                            {/*name="country"*/}
-                            {/*type="string"*/}
-                            {/*value={country}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*<p>zip code</p>*/}
-                        {/*<input*/}
-                            {/*name="zipCode"*/}
-                            {/*type="string"*/}
-                            {/*value={zipCode}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*<p>city</p>*/}
-                        {/*<input*/}
-                            {/*name="city"*/}
-                            {/*type="string"*/}
-                            {/*value={city}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*<p>state</p>*/}
-                        {/*<input*/}
-                            {/*name="state"*/}
-                            {/*type="string"*/}
-                            {/*value={state}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*<p>city</p>*/}
-                        {/*<select*/}
-                            {/*name="country"*/}
-                            {/*type="string"*/}
-                            {/*onChange={this.handleChange}*/}
-                            {/*// value={this.state.value}*/}
-                        {/*>*/}
-                            {/*<option value='Poland'>Poland</option>*/}
-                            {/*<option value='USA'>USA</option>*/}
-                            {/*<option value='UK'>UK</option>*/}
-                        {/*</select>*/}
-                    {/*</div>*/}
-                    {/*<p className="container-title">PAYMENT</p>*/}
-                    {/*<div>*/}
-                        {/*<p>card number</p>*/}
-                        {/*<input*/}
-                            {/*name="cardNumber"*/}
-                            {/*type="string"*/}
-                            {/*value={cardNumber}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*<p>card holder</p>*/}
-                        {/*<input*/}
-                            {/*name="cardHolder"*/}
-                            {/*type="string"*/}
-                            {/*value={cardHolder}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*<p>cvc</p>*/}
-                        {/*<input*/}
-                            {/*name="cardCvc"*/}
-                            {/*type="string"*/}
-                            {/*value={cardCvc}*/}
-                            {/*onChange={this.handleChange}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
+                    <div className="required">
+                        <p>e-mail</p>
+                        <input
+                            name="email"
+                            type="string"
+                            value={email}
+                            onChange={(e) => this.handleChange(e, 'email')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <p>phone</p>
+                        <input
+                            name="phone"
+                            type="string"
+                            value={phone}
+                            onChange={(e) => this.handleChange(e, 'phone')}
+                        />
+                    </div>
+                    <div className="required">
+                        <p>address</p>
+                        <input
+                            name="address"
+                            type="string"
+                            value={address}
+                            onChange={(e) => this.handleChange(e, 'address')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <p>address cont.</p>
+                        <input
+                            name="country"
+                            type="string"
+                            value={addresCont}
+                            onChange={(e) => this.handleChange(e, 'addresCont')}
+                        />
+                    </div>
+                    <div className="required">
+                        <p>zip code</p>
+                        <input
+                            name="zipCode"
+                            type="string"
+                            value={zipCode}
+                            onChange={(e) => this.handleChange(e, 'zipCode')}
+                            required
+                        />
+                    </div>
+                    <div className="required">
+                        <p>city</p>
+                        <input
+                            name="city"
+                            type="string"
+                            value={city}
+                            onChange={(e) => this.handleChange(e, 'city')}
+                            required
+                        />
+                    </div>
+                    <div className="required">
+                        <p>state</p>
+                        <input
+                            name="state"
+                            type="string"
+                            value={state}
+                            onChange={(e) => this.handleChange(e, 'state')}
+                            required
+                        />
+                    </div>
+                    <div className="required">
+                        <p>country</p>
+                        <select
+                            name="country"
+                            type="string"
+                            onChange={(e) => this.handleChange(e, 'country')}
+                            value={country}
+                            required
+                        >
+                            <option value='Poland'>Poland</option>
+                            <option value='USA'>USA</option>
+                            <option value='UK'>UK</option>
+                        </select>
+                    </div>
+                    <p className="container-title">PAYMENT</p>
+                    <div className="required">
+                        <p>card number</p>
+                        <input
+                            name="cardNumber"
+                            type="string"
+                            value={cardNumber}
+                            onChange={(e) => this.handleChange(e, 'cardNumber')}
+                            required
+                        />
+                    </div>
+                    <div className="required">
+                        <p>card holder</p>
+                        <input
+                            name="cardHolder"
+                            type="string"
+                            value={cardHolder}
+                            onChange={(e) => this.handleChange(e, 'cardHolder')}
+                            required
+                        />
+                    </div>
+                    <div className="required">
+                        <p>cvc</p>
+                        <input
+                            name="cardCvc"
+                            type="string"
+                            value={cardCvc}
+                            onChange={(e) => this.handleChange(e, 'cardCvc')}
+                            required
+                        />
+                    </div>
                     <button
-                        onClick={this.handleValidate}
+                        // disabled={}
+                        onClick={this.handleBuy}
                         type="button"
                     >
                         BUY
@@ -202,7 +193,6 @@ class Form extends Component {
             </Fragment>
         )
     }
-
 };
 
 
@@ -211,7 +201,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addData: (value, target) => dispatch(addData(value, target)),
+    modifyForm: (value, target) => dispatch(modifyForm(value, target)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)

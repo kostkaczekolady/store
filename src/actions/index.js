@@ -1,8 +1,8 @@
-import { ADD_DATA } from "./action-types";
+import { MODIFY_FORM } from "./action-types";
 
-export const addData = (value, target) => (dispatch) => {
+export const modifyForm = (value, target) => (dispatch) => {
     dispatch ({
-        type: ADD_DATA,
+        type: MODIFY_FORM,
         payload: { value, target },
     });
 };
