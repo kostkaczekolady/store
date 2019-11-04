@@ -1,8 +1,8 @@
 import React from 'react';
 import Menu from './Menu'
 
-const bag = require('./assets/icon-bag.svg');
-const hamburger = require('./assets/icon-hamburger.svg');
+const bag = require('../assets/icon-bag.svg');
+const hamburger = require('../assets/icon-hamburger.svg');
 
 const Header = ({menuOpen, handleToggleMenu}) => {
     return (

@@ -16,7 +16,6 @@ const initialState = {
 
 const mainReducer = (state = initialState, action) => {
     const newState = JSON.parse(JSON.stringify(state));
-
     switch(action.type){
         case 'MODIFY_FORM':
             newState[action.payload.target] = action.payload.value;

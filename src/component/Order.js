@@ -1,6 +1,6 @@
 import React from 'react';
 
-const item = require('./assets/pic-item.png');
+const item = require('../assets/pic-item.png');
 
 const Order = () => {
 

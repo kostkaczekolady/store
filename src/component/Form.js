@@ -1,6 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { modifyForm } from "./actions";
+import { modifyForm } from "../actions/index";
+
+import RForm from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+import Button from 'react-validation/build/button';
+import {validateEmail, validateName, validateNumber, validateRequired, validateCvc, validateZip} from "../validators";
 
 
 class Form extends Component {
@@ -8,25 +13,16 @@ class Form extends Component {
         super(props);
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleValidate = this.handleValidate.bind(this);
         this.handleBuy = this.handleBuy.bind(this);
     }
 
     handleChange(e, target) {
         this.props.modifyForm(e.target.value, target);
-        this.handleValidate(e);
     }
 
-    handleValidate(e) {
-        if (e.target.name === 'name' || "surname" ){
-            console.log(e.target.value.length)
-        } else if (e.target.value === "email"){
-
-        }
-    }
-
-    handleBuy(){
-        console.log("Succes!")
+    handleBuy(event){
+        event.preventDefault();
+        alert('Sending form...');
     }
 
     render() {
@@ -46,61 +42,62 @@ class Form extends Component {
             cardCvc,
         } = this.props.mainReducer;
         return (
-            <Fragment>
+            <RForm onSubmit={this.handleBuy}>
                 <div className="form-container">
                     <p className="container-title">DELIVERY ADDRESS</p>
                     <div className="required">
                         <p>first name</p>
-                        <input
+                        <Input
                             name="name"
                             type="string"
                             value={name}
                             onChange={(e) => this.handleChange(e, 'name')}
-                            required
+                            validations={[validateName]}
                         />
                     </div>
                     <div className="required">
                         <p>last name</p>
-                        <input
+                        <Input
                             name="surname"
                             type="string"
                             value={surname}
                             onChange={(e) => this.handleChange(e, 'surname')}
-                            required
+                            validations={[validateName]}
                         />
                     </div>
                     <div className="required">
                         <p>e-mail</p>
-                        <input
+                        <Input
                             name="email"
                             type="string"
                             value={email}
                             onChange={(e) => this.handleChange(e, 'email')}
-                            required
+                            validations={[validateEmail]}
                         />
                     </div>
                     <div>
                         <p>phone</p>
-                        <input
+                        <Input
                             name="phone"
                             type="string"
                             value={phone}
                             onChange={(e) => this.handleChange(e, 'phone')}
+                            validations={[validateNumber]}
                         />
                     </div>
                     <div className="required">
                         <p>address</p>
-                        <input
+                        <Input
                             name="address"
                             type="string"
                             value={address}
                             onChange={(e) => this.handleChange(e, 'address')}
-                            required
+                            validations={[validateRequired]}
                         />
                     </div>
                     <div>
                         <p>address cont.</p>
-                        <input
+                        <Input
                             name="country"
                             type="string"
                             value={addressCont}
@@ -109,32 +106,33 @@ class Form extends Component {
                     </div>
                     <div className="required">
                         <p>zip code</p>
-                        <input
+                        <Input
                             name="zipCode"
                             type="string"
                             value={zipCode}
                             onChange={(e) => this.handleChange(e, 'zipCode')}
+                            validations={[validateZip]}
                             required
                         />
                     </div>
                     <div className="required">
                         <p>city</p>
-                        <input
+                        <Input
                             name="city"
                             type="string"
                             value={city}
                             onChange={(e) => this.handleChange(e, 'city')}
-                            required
+                            validations={[validateRequired]}
                         />
                     </div>
                     <div className="required">
                         <p>state</p>
-                        <input
+                        <Input
                             name="state"
                             type="string"
                             value={state}
                             onChange={(e) => this.handleChange(e, 'state')}
-                            required
+                            validations={[validateRequired]}
                         />
                     </div>
                     <div className="required">
@@ -144,7 +142,6 @@ class Form extends Component {
                             type="string"
                             onChange={(e) => this.handleChange(e, 'country')}
                             value={country}
-                            required
                         >
                             <option value='Poland'>Poland</option>
                             <option value='USA'>USA</option>
@@ -154,47 +151,42 @@ class Form extends Component {
                     <p className="container-title">PAYMENT</p>
                     <div className="required">
                         <p>card number</p>
-                        <input
+                        <Input
                             name="cardNumber"
                             type="string"
                             value={cardNumber}
                             onChange={(e) => this.handleChange(e, 'cardNumber')}
-                            required
+                            validations={[validateNumber]}
                         />
                     </div>
                     <div className="required">
                         <p>card holder</p>
-                        <input
+                        <Input
                             name="cardHolder"
                             type="string"
                             value={cardHolder}
                             onChange={(e) => this.handleChange(e, 'cardHolder')}
-                            required
+                            validations={[validateName]}
                         />
                     </div>
                     <div className="required">
                         <p>cvc</p>
-                        <input
+                        <Input
                             name="cardCvc"
                             type="string"
                             value={cardCvc}
                             onChange={(e) => this.handleChange(e, 'cardCvc')}
-                            required
+                            validations={[validateCvc]}
                         />
                     </div>
-                    <button
-                        // disabled={}
-                        onClick={this.handleBuy}
-                        type="button"
-                    >
+                    <Button type="submit">
                         BUY
-                    </button>
+                    </Button>
                 </div>
-            </Fragment>
+            </RForm>
         )
     }
-};
-
+}
 
 const mapStateToProps = (state) => ({
     ...state,

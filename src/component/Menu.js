@@ -1,6 +1,6 @@
 import React from 'react';
 
-const hamburger = require('./assets/icon-hamburger.svg');
+const hamburger = require('../assets/icon-hamburger.svg');
 
 const Menu = ({handleToggleMenu}) => {
     return (
