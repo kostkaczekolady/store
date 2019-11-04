@@ -3,7 +3,7 @@ const initialState = {
     surname: '',
     email: '',
     address: '',
-    addresCont: '',
+    addressCont: '',
     zipCode: '',
     city: '',
     state: '',

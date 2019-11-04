@@ -6,8 +6,8 @@ const Checkout = () => {
     return (
         <Fragment>
             <div className="layout">
-                <p className="container-checkout-header">CHECKOUT</p>
-                <div className="container-checkout">
+                <p className="checkout-container-header">CHECKOUT</p>
+                <div className="checkout-container">
                     <Order/>
                     <Form/>
                 </div>

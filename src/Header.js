@@ -6,10 +6,10 @@ const hamburger = require('./assets/icon-hamburger.svg');
 
 const Header = ({menuOpen, handleToggleMenu}) => {
     return (
-        <div className="container-header">
-            <div className="container-header-content">
+        <div className="header-container">
+            <div className="header-content">
                 <div
-                    className="container-header-menu"
+                    className="header-menu"
                     onClick={handleToggleMenu}
                     onKeyPress={handleToggleMenu}
                     role="button"
@@ -17,10 +17,10 @@ const Header = ({menuOpen, handleToggleMenu}) => {
                     <img src={ hamburger } alt=""/>
                     <p>Menu</p>
                 </div>
-                <div className="container-header-logo">
+                <div className="header-logo">
                     <p>ACME STORE</p>
                 </div>
-                <div className="container-header-bag">
+                <div className="header-bag">
                     <img src={ bag } alt=""/>
                     <p>1</p>
                 </div>

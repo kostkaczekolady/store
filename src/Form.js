@@ -36,7 +36,7 @@ class Form extends Component {
             email,
             phone,
             address,
-            addresCont,
+            addressCont,
             zipCode,
             city,
             state,
@@ -47,7 +47,7 @@ class Form extends Component {
         } = this.props.mainReducer;
         return (
             <Fragment>
-                <div className="container-form">
+                <div className="form-container">
                     <p className="container-title">DELIVERY ADDRESS</p>
                     <div className="required">
                         <p>first name</p>
@@ -103,8 +103,8 @@ class Form extends Component {
                         <input
                             name="country"
                             type="string"
-                            value={addresCont}
-                            onChange={(e) => this.handleChange(e, 'addresCont')}
+                            value={addressCont}
+                            onChange={(e) => this.handleChange(e, 'addressCont')}
                         />
                     </div>
                     <div className="required">
